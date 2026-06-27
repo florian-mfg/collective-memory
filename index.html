@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Collective Memory</title>
+  <style>
+    @font-face{font-family:Riforma;src:url("assets/RiformaLL-Medium.otf") format("opentype");font-display:swap}
+    :root{--blue:#90BEFB;--paper:#E5E5E5;--ink:#000;--nav-h:43px}
+    *{box-sizing:border-box}
+    html{background:var(--paper);font-family:Riforma,Arial,sans-serif;color:var(--ink)}
+    body{margin:0;background:var(--paper);font-size:16px;line-height:1.05}
+    button,a{font:inherit;color:inherit}
+    button{border:0;padding:0;background:none}
+    .page{display:none;min-height:100svh}.page.active{display:block}
+    #memory-page{padding:0}
+    .groups{width:min(100%,900px);margin:auto}
+    .icon-group{position:relative;height:45svh;overflow:hidden;isolation:isolate}
+    .icon-group+.icon-group{margin-top:0}
+    .connections{position:absolute;inset:0;width:100%;height:100%;z-index:0;overflow:visible;pointer-events:none}
+    .connections polyline{fill:none;stroke:var(--blue);stroke-width:1.2;stroke-dasharray:4 6;opacity:.7}
+    .icon-item{position:absolute;left:0;top:0;z-index:1;will-change:transform}
+    .icon-art{display:block;width:var(--w);height:var(--h);object-fit:contain;pointer-events:none}
+    .number{position:absolute;left:var(--bx);top:var(--by);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--blue);font-size:13px;cursor:pointer;transition:background .2s,color .2s,transform .2s;z-index:2}
+    .number:hover,.number:focus-visible{transform:scale(1.12);outline:none}.number.visited,.number[aria-expanded=true]{background:#000;color:#fff}
+    .bottom-nav{position:fixed;z-index:30;bottom:max(14px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;align-items:center;background:#000;border:3px solid #000;border-radius:999px;white-space:nowrap;box-shadow:0 2px 10px #0001}
+    .nav-btn{height:36px;padding:0 12px;border-radius:999px;color:#fff;cursor:pointer}
+    .nav-btn.active{background:var(--blue);color:#000}
+    .popup-layer{position:fixed;inset:0;z-index:20;display:none;pointer-events:none}.popup-layer.open{display:block}
+    .popup-backdrop{position:absolute;inset:0;background:#e5e5e508}
+    .popup{position:absolute;left:12px;right:12px;bottom:72px;max-height:calc(100svh - 96px);padding:9px 10px 8px;background:rgb(144 190 251 / .9);border-radius:8px;pointer-events:auto;overflow:auto;box-shadow:0 1px 4px #0001}
+    .popup-title{display:block;width:100%;border-top:1px solid rgba(0,0,0,.65);padding-top:3px;font-size:15px}
+    .popup-image{display:block;width:100%;height:154px;padding:18px 30px;object-fit:contain;filter:brightness(0) drop-shadow(0 8px 12px #77a0d8aa)}
+    .meta{margin:0}.meta-row{display:grid;grid-template-columns:60px 1fr;align-items:start;min-height:29px;border-top:1px solid #0007;padding:6px 0 2px}.meta dt{font-size:10px}.meta dd{margin:0;font-size:16px}.meta a{text-decoration:none;display:block}.meta-row:last-child dt{display:none}.meta-row:last-child dd{grid-column:1/-1}
+    .popup-controls{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;border-top:1px solid #0007;padding:14px 0 12px}
+    .control{height:23px;cursor:pointer}.control img{height:21px;display:block}.control.prev img{margin-right:auto}.control.close img{margin:auto}.control.next img{margin-left:auto;transform:rotate(180deg)}
+    #info-page{padding:70px 12px 120px}.info-wrap{width:min(100%,900px);margin:auto}.info-copy{font-size:19px;line-height:1.14;margin:0;max-width:650px}
+    .info-art{position:relative;height:330px;margin:12px auto 0;max-width:480px;overflow:hidden}.info-art img{position:absolute;object-fit:contain;filter:grayscale(1) brightness(0)}
+    .info-art img:nth-child(1){width:50%;left:2%;top:16%}.info-art img:nth-child(2){width:45%;right:0;top:4%}.info-art img:nth-child(3){width:48%;left:28%;bottom:0}
+    @media (min-width:700px){
+      body{font-size:18px}.groups{width:90vw}.icon-group{height:680px;max-height:none}.number{width:40px;height:40px;font-size:14px}
+      .popup{left:50%;right:auto;width:min(620px,calc(100vw - 40px));transform:translateX(-50%);bottom:78px;max-height:70svh;padding:12px 14px}.popup-image{height:250px}.meta-row{grid-template-columns:90px 1fr}.meta dt{font-size:12px}.meta dd{font-size:18px}
+      #info-page{padding-top:90px}.info-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center}.info-copy{font-size:27px}.info-art{width:100%;height:520px}
+    }
+    @media (min-width:700px) and (hover:hover){.number:hover{background:#000;color:#fff}}
+    @media (prefers-reduced-motion:reduce){.icon-item{will-change:auto}}
+  </style>
+</head>
+<body>
+  <main>
+    <section id="memory-page" class="page active" aria-label="Collective Memory icons"><div id="groups" class="groups"></div></section>
+    <section id="info-page" class="page" aria-label="Information">
+      <div class="info-wrap">
+        <p class="info-copy">COLLECTIVE MEMORY explores the role of influence, appropriation, and transformation in graphic design through typographic fragments extracted from existing visual material, making visible the references and inspirations embedded within every work. Through copying, isolating, and recombining these fragments, information is transformed and reinterpreted. Rather than presenting design as an autonomous creation, every work is understood as part of an ongoing process that remains connected to what came before and open to what follows. The project itself becomes a visible network of references, traces, and shared cultural memory, symbolizing the interconnected processes through which design is continuously shaped and reshaped.</p>
+        <div class="info-art" aria-hidden="true"><img src="material/pm_1.2_create.svg"><img src="material/pm_1.5_borrow.svg"><img src="material/pm_2.1_creation.svg"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="popup-layer" class="popup-layer" aria-hidden="true">
+    <div class="popup-backdrop"></div>
+    <article class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+      <div id="popup-title" class="popup-title"></div><img id="popup-image" class="popup-image" alt="">
+      <dl id="popup-meta" class="meta"></dl>
+      <div class="popup-controls"><button class="control prev" aria-label="Previous icon"><img src="assets/Arrow-Left.svg" alt=""></button><button class="control close" aria-label="Close"><img src="assets/Close.svg" alt=""></button><button class="control next" aria-label="Next icon"><img src="assets/Arrow-RIght.svg" alt=""></button></div>
+    </article>
+  </div>
+
+  <nav class="bottom-nav" aria-label="Pages"><button class="nav-btn active" data-page="memory-page">Collective Memory</button><button class="nav-btn" data-page="info-page">Info</button></nav>
+
+  <script>
+    // GROUP CONFIGURATION
+    // Add another group by copying one complete, labeled block below.
+    // Positions and sizes are percentages of the group area.
+    const groups = [
+      // ---------- GROUP 1 ----------
+      {
+        id:'1',
+        items:[
+          {n:'1.1',file:'pm_1.1_to',x:11,y:11,w:44,h:10,bx:48,by:70},
+          {n:'1.2',file:'pm_1.2_create',x:40,y:18,w:48,h:35,bx:61,by:-7},
+          {n:'1.3',file:'pm_1.3_is',x:18,y:33,w:14,h:25,bx:-36,by:42},
+          {n:'1.4',file:'pm_1.4_to',x:61,y:49,w:14,h:14,bx:86,by:43},
+          {n:'1.5',file:'pm_1.5_borrow',x:28,y:47,w:33,h:34,bx:82,by:67}
+        ]
+      },
+
+      // ---------- GROUP 2 ----------
+      {
+        id:'2',
+        items:[
+          {n:'2.1',file:'pm_2.1_creation',x:9,y:15,w:51,h:48,bx:83,by:2},
+          {n:'2.2',file:'pm_2.2_is',x:34,y:48,w:36,h:37,bx:-14,by:68},
+          {n:'2.3',file:'pm_2.3_slow',x:66,y:27,w:20,h:45,bx:75,by:55}
+        ]
+      },
+
+      // ---------- GROUP 3 (scroll-test copy of group 1) ----------
+      {
+        id:'3',
+        items:[
+          {n:'1.1',file:'pm_1.1_to',x:11,y:11,w:44,h:10,bx:48,by:70},
+          {n:'1.2',file:'pm_1.2_create',x:40,y:18,w:48,h:35,bx:61,by:-7},
+          {n:'1.3',file:'pm_1.3_is',x:18,y:33,w:14,h:25,bx:-36,by:42},
+          {n:'1.4',file:'pm_1.4_to',x:61,y:49,w:14,h:14,bx:86,by:43},
+          {n:'1.5',file:'pm_1.5_borrow',x:28,y:47,w:33,h:34,bx:82,by:67}
+        ]
+      },
+
+      // ---------- GROUP 4 (scroll-test copy of group 2) ----------
+      {
+        id:'4',
+        items:[
+          {n:'2.1',file:'pm_2.1_creation',x:9,y:15,w:51,h:48,bx:83,by:2},
+          {n:'2.2',file:'pm_2.2_is',x:34,y:48,w:36,h:37,bx:-14,by:68},
+          {n:'2.3',file:'pm_2.3_slow',x:66,y:27,w:20,h:45,bx:75,by:55}
+        ]
+      }
+    ];
+    // POPUP CONTENT
+    // Edit the SVG path and text for each numbered circle here.
+    const popupContent = {
+      '1.1': {
+        image:'material/pm_1.1_to.svg',
+        title:'To create is to borrow',
+        quote:'cf. Austin Kleon, Steal like an artist',
+        project:'churchofautobahn',
+        designer:'Molly Rose Dyson',
+        year:'2022',
+        country:'Germany',
+        link:'https://meisnerfloriangestaltung.com'
+      },
+      '1.2': {
+        image:'material/pm_1.2_create.svg',
+        title:'To create is to borrow',
+        quote:'cf. Austin Kleon, Steal like an artist',
+        project:'churchofautobahn',
+        designer:'Molly Rose Dyson',
+        year:'2022',
+        country:'Germany',
+        link:'https://meisnerfloriangestaltung.com'
+      },
+      '1.3': {
+        image:'material/pm_1.3_is.svg',
+        title:'To create is to borrow',
+        quote:'cf. Austin Kleon, Steal like an artist',
+        project:'churchofautobahn',
+        designer:'Molly Rose Dyson',
+        year:'2022',
+        country:'Germany',
+        link:'https://meisnerfloriangestaltung.com'
+      },
+      '1.4': {
+        image:'material/pm_1.4_to.svg',
+        title:'To create is to borrow',
+        quote:'cf. Austin Kleon, Steal like an artist',
+        project:'churchofautobahn',
+        designer:'Molly Rose Dyson',
+        year:'2022',
+        country:'Germany',
+        link:'https://meisnerfloriangestaltung.com'
+      },
+      '1.5': {
+        image:'material/pm_1.5_borrow.svg',
+        title:'To create is to borrow',
+        quote:'cf. Austin Kleon, Steal like an artist',
+        project:'churchofautobahn',
+        designer:'Molly Rose Dyson',
+        year:'2022',
+        country:'Germany',
+        link:'https://meisnerfloriangestaltung.com'
+      },
+      '2.1': {
+        image:'material/pm_2.1_creation.svg',
+        title:'To create is to borrow',
+        quote:'cf. Austin Kleon, Steal like an artist',
+        project:'churchofautobahn',
+        designer:'Molly Rose Dyson',
+        year:'2022',
+        country:'Germany',
+        link:'https://meisnerfloriangestaltung.com'
+      },
+      '2.2': {
+        image:'material/pm_2.2_is.svg',
+        title:'To create is to borrow',
+        quote:'cf. Austin Kleon, Steal like an artist',
+        project:'churchofautobahn',
+        designer:'Molly Rose Dyson',
+        year:'2022',
+        country:'Germany',
+        link:'https://meisnerfloriangestaltung.com'
+      },
+      '2.3': {
+        image:'material/pm_2.3_slow.svg',
+        title:'To create is to borrow',
+        quote:'cf. Austin Kleon, Steal like an artist',
+        project:'churchofautobahn',
+        designer:'Molly Rose Dyson',
+        year:'2022',
+        country:'Germany',
+        link:'https://meisnerfloriangestaltung.com'
+      }
+    };
+    const groupsEl=document.querySelector('#groups');
+    const rendered=[];
+    groups.forEach((group,gi)=>{
+      const section=document.createElement('section');section.className='icon-group';section.dataset.group=group.id;section.setAttribute('aria-label',`Icon group ${group.id}`);
+      section.innerHTML='<svg class="connections" aria-hidden="true"><polyline></polyline></svg>';
+      const state={section,line:section.querySelector('polyline'),items:[],group,index:gi};
+      group.items.forEach((item,ii)=>{
+        const el=document.createElement('div');el.className='icon-item';el.style.cssText=`--w:min(${item.w}vw,${item.w*9}px);--h:min(${item.h}vw,${item.h*9}px);left:${item.x}%;top:${item.y}%`;
+        el.innerHTML=`<img class="icon-art" src="material/${item.file}-F.svg" alt=""><button class="number" style="--bx:${item.bx}%;--by:${item.by}%" aria-label="Open icon ${item.n}" aria-expanded="false">${item.n}</button>`;
+        section.append(el);const record={...item,el,button:el.querySelector('button'),dx:0,dy:0,tx:0,ty:0,start:performance.now(),duration:9000+Math.random()*5000};
+        record.button.addEventListener('click',()=>openPopup(gi,ii));state.items.push(record);
+      });groupsEl.append(section);rendered.push(state);
+    });
+
+    const layer=document.querySelector('#popup-layer'),popupEl=document.querySelector('.popup'),closeButton=document.querySelector('.popup .close'),titleEl=document.querySelector('#popup-title'),imageEl=document.querySelector('#popup-image'),metaEl=document.querySelector('#popup-meta');let current=null,lastTrigger=null;
+    function openPopup(gi,ii){current={gi,ii};lastTrigger=rendered[gi].items[ii].button;const item=groups[gi].items[ii],popup=popupContent[item.n];document.querySelectorAll('.number').forEach(b=>{b.classList.remove('visited');b.setAttribute('aria-expanded','false')});lastTrigger.classList.add('visited');lastTrigger.setAttribute('aria-expanded','true');titleEl.textContent=`0${item.n.replace('.', '·')}  ${popup.title}`;imageEl.src=popup.image;imageEl.alt=`Icon ${item.n}`;metaEl.innerHTML=[['Quote',popup.quote],['Project',popup.project],['Designer',popup.designer],['Year',popup.year],['Country',popup.country]].map(([k,v])=>`<div class="meta-row"><dt>${k}</dt><dd>${v}</dd></div>`).join('')+`<div class="meta-row"><dt></dt><dd><a href="${popup.link}" target="_blank" rel="noopener noreferrer" aria-label="Open project link in a new window">Link↗</a></dd></div>`;layer.classList.add('open');layer.setAttribute('aria-hidden','false');popupEl.scrollTop=0;closeButton.focus({preventScroll:true});requestAnimationFrame(()=>{popupEl.scrollTop=0})}
+    function closePopup(){document.querySelectorAll('.number').forEach(b=>{b.classList.remove('visited');b.setAttribute('aria-expanded','false')});layer.classList.remove('open');layer.setAttribute('aria-hidden','true');if(lastTrigger)lastTrigger.focus({preventScroll:true})}
+    function movePopup(direction){const count=groups[current.gi].items.length;openPopup(current.gi,(current.ii+direction+count)%count)}
+    document.querySelector('.popup .prev').onclick=()=>movePopup(-1);document.querySelector('.popup .next').onclick=()=>movePopup(1);document.querySelector('.popup .close').onclick=closePopup;document.querySelector('.popup-backdrop').onclick=closePopup;
+    addEventListener('keydown',e=>{if(!current||!layer.classList.contains('open'))return;if(e.key==='Escape')closePopup();if(e.key==='ArrowLeft')movePopup(-1);if(e.key==='ArrowRight')movePopup(1)});
+    document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===btn.dataset.page));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b===btn));closePopup();scrollTo({top:0,behavior:'smooth'})}));
+
+    const edgeGap=12;
+    function movementBounds(item){
+      const section=item.el.parentElement,art=item.el.querySelector('.icon-art'),button=item.button;
+      const visibleLeft=Math.min(0,button.offsetLeft),visibleRight=Math.max(art.offsetWidth,button.offsetLeft+button.offsetWidth);
+      const visibleTop=Math.min(0,button.offsetTop),visibleBottom=Math.max(art.offsetHeight,button.offsetTop+button.offsetHeight);
+      const edgeMinX=edgeGap-item.el.offsetLeft-visibleLeft,edgeMaxX=section.clientWidth-edgeGap-item.el.offsetLeft-visibleRight;
+      const edgeMinY=edgeGap-item.el.offsetTop-visibleTop,edgeMaxY=section.clientHeight-edgeGap-item.el.offsetTop-visibleBottom;
+      return {
+        minX:edgeMinX,
+        maxX:edgeMaxX,
+        minY:edgeMinY,
+        maxY:edgeMaxY
+      };
+    }
+    function startMotion(item){
+      const angle=Math.random()*Math.PI*2,speed=5+Math.random()*5;
+      item.x=0;item.y=0;item.vx=Math.cos(angle)*speed;item.vy=Math.sin(angle)*speed;
+      item.phase=Math.random()*Math.PI*2;
+    }
+    rendered.forEach(g=>g.items.forEach(startMotion));
+    let lastFrame=performance.now();
+    function animate(now){
+      const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,dt=Math.min((now-lastFrame)/1000,.04);lastFrame=now;
+      rendered.forEach(g=>{g.items.forEach(item=>{if(!reduce){
+        const bounds=movementBounds(item),drift=Math.sin(now*.00022+item.phase)*.12*dt;
+        const cos=Math.cos(drift),sin=Math.sin(drift),vx=item.vx*cos-item.vy*sin;
+        item.vy=item.vx*sin+item.vy*cos;item.vx=vx;item.x+=item.vx*dt;item.y+=item.vy*dt;
+        if(item.x<bounds.minX){item.x=bounds.minX;item.vx=Math.abs(item.vx)}else if(item.x>bounds.maxX){item.x=bounds.maxX;item.vx=-Math.abs(item.vx)}
+        if(item.y<bounds.minY){item.y=bounds.minY;item.vy=Math.abs(item.vy)}else if(item.y>bounds.maxY){item.y=bounds.maxY;item.vy=-Math.abs(item.vy)}
+        item.el.style.transform=`translate3d(${item.x}px,${item.y}px,0)`
+      }});drawLine(g)});requestAnimationFrame(animate)
+    }
+    function drawLine(g){const box=g.section.getBoundingClientRect();const points=g.items.map(item=>{const r=item.button.getBoundingClientRect();return `${r.left-box.left+r.width/2},${r.top-box.top+r.height/2}`});g.line.setAttribute('points',points.join(' '))}
+    requestAnimationFrame(animate);
+  </script>
+</body>
+</html>
