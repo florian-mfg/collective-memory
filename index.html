@@ -34,13 +34,15 @@
     .meta{margin:0}.meta-row{display:grid;grid-template-columns:60px 1fr;align-items:start;min-height:29px;border-top:1px solid #0007;padding:6px 0 2px}.meta dt{font-size:10px}.meta dd{margin:0;font-size:16px}.meta a{text-decoration:none;display:block}.meta-row:last-child dt{display:none}.meta-row:last-child dd{grid-column:1/-1}
     .popup-controls{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;border-top:1px solid #0007;padding:14px 0 12px}
     .control{height:23px;cursor:pointer}.control img{height:21px;display:block}.control.prev img{margin-right:auto}.control.close img{margin:auto}.control.next img{margin-left:auto;transform:rotate(180deg)}
-    #info-page{padding:70px 12px 120px}.info-wrap{width:min(100%,900px);margin:auto}.info-copy{font-size:19px;line-height:1.14;margin:0;max-width:650px}
-    .info-art{position:relative;height:330px;margin:12px auto 0;max-width:480px;overflow:hidden}.info-art img{position:absolute;object-fit:contain;filter:grayscale(1) brightness(0)}
-    .info-art img:nth-child(1){width:50%;left:2%;top:16%}.info-art img:nth-child(2){width:45%;right:0;top:4%}.info-art img:nth-child(3){width:48%;left:28%;bottom:0}
+    #info-page{padding:72px 12px 210px}.info-wrap{width:100%;margin:auto}.info-copy{font-size:19px;line-height:1.14;margin:0;max-width:650px}
+    .info-video{width:min(65vw,260px);aspect-ratio:9/16;margin:72px auto 0}
+    .info-video iframe{display:block;width:100%;height:100%;border:0}
+    .info-credits{margin:40px 0 0;font-size:19px;line-height:1.14}.info-credits p{margin:0}.info-credits p+p{margin-top:24px}
     @media (min-width:700px){
       body{font-size:18px}.groups{width:90vw}.icon-group{height:680px;max-height:none}.number{width:40px;height:40px;font-size:14px}
       .popup{left:50%;right:auto;width:min(620px,calc(100vw - 40px));transform:translateX(-50%);bottom:78px;max-height:70svh;padding:12px 14px}.popup-image{height:250px}.meta-row{grid-template-columns:90px 1fr}.meta dt{font-size:12px}.meta dd{font-size:18px}
-      #info-page{padding-top:90px}.info-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center}.info-copy{font-size:27px}.info-art{width:100%;height:520px}
+      #info-page{padding:22px 0 120px}.info-wrap{width:75vw;margin:0 0 0 25vw}.info-copy{font-size:19px;line-height:1.08;max-width:1010px}
+      .info-video{width:clamp(250px,16.7vw,310px);margin:54px 0 0}.info-credits{margin-top:72px;font-size:19px;line-height:1.08}
     }
     @media (min-width:700px) and (hover:hover){.number:hover{background:#000;color:#fff}}
     @media (prefers-reduced-motion:reduce){.icon-item{will-change:auto}}
@@ -52,7 +54,13 @@
     <section id="info-page" class="page" aria-label="Information">
       <div class="info-wrap">
         <p class="info-copy">COLLECTIVE MEMORY explores the role of influence, appropriation, and transformation in graphic design through typographic fragments extracted from existing visual material, making visible the references and inspirations embedded within every work. Through copying, isolating, and recombining these fragments, information is transformed and reinterpreted. Rather than presenting design as an autonomous creation, every work is understood as part of an ongoing process that remains connected to what came before and open to what follows. The project itself becomes a visible network of references, traces, and shared cultural memory, symbolizing the interconnected processes through which design is continuously shaped and reshaped.</p>
-        <div class="info-art" aria-hidden="true"><img src="material/pm_1.2_create.svg"><img src="material/pm_1.5_borrow.svg"><img src="material/pm_3.1_creation.svg"></div>
+        <div class="info-video">
+          <iframe src="https://player.vimeo.com/video/1205706971?background=1&autoplay=1&muted=1&loop=1&autopause=0&badge=0&controls=0" title="PM-Stele-Animation-2" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <div class="info-credits">
+          <p>Project at Bauhaus University Weimar 2026<br>Visual Communication - MA<br>Class: Commons in Design<br>Project supervision: Katharina Köhler</p>
+          <p>Typeface of this Website: Riforma Medium</p>
+        </div>
       </div>
     </section>
   </main>
