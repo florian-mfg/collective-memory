@@ -4,8 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Collective Memory</title>
+  <link rel="icon" href="material/PM-Favicon-1.jpg" type="image/jpeg">
+  <link rel="shortcut icon" href="material/PM-Favicon-1.jpg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="material/PM-Favicon-1.jpg">
   <style>
-    @font-face{font-family:Riforma;src:url("assets/RiformaLL-Medium.otf") format("opentype");font-display:swap}
+    @font-face{font-family:Riforma;src:url("assets/RiformaLLTrialWeb-Medium.woff2") format("woff2");font-display:swap}
     :root{--blue:#90BEFB;--paper:#E5E5E5;--ink:#000;--nav-h:43px}
     *{box-sizing:border-box}
     html{background:var(--paper);font-family:Riforma,Arial,sans-serif;color:var(--ink)}
@@ -33,9 +36,10 @@
     .popup-title{display:block;width:100%;border-top:1px solid rgba(0,0,0,.65);padding-top:3px;font-size:15px}
     .popup-image{display:block;width:100%;height:154px;padding:18px 30px;object-fit:contain;filter:brightness(0) drop-shadow(0 8px 12px #77a0d8aa)}
     .meta{margin:0}.meta-row{display:grid;grid-template-columns:60px 1fr;align-items:start;min-height:29px;border-top:1px solid #0007;padding:6px 0 2px}.meta dt{font-size:10px}.meta dd{margin:0;font-size:16px}.meta a{text-decoration:none;display:block}.meta-row:last-child dt{display:none}.meta-row:last-child dd{grid-column:1/-1}
-    .popup-controls{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;border-top:1px solid #0007;margin-inline:-6px;padding:14px 0 4px}
+    .popup-controls{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;border-top:1px solid #0007;padding:14px 0 4px}
     .control{height:23px;cursor:pointer}.control img{height:21px;display:block}.control.prev img{margin-right:auto}.control.close img{margin:auto}.control.next img{margin-left:auto;transform:rotate(180deg)}
-    #info-page{padding:72px 12px 210px}.info-wrap{width:100%;margin:auto}.info-copy{font-size:19px;line-height:1.14;margin:0;max-width:650px}
+    @media (max-width:699px){.popup-controls{padding-inline:8px}}
+    #info-page{padding:max(16px,env(safe-area-inset-top)) 12px 210px}.info-wrap{width:100%;margin:auto}.info-copy{font-size:19px;line-height:1.14;margin:0;max-width:650px}
     .info-video{width:min(65vw,260px);aspect-ratio:9/16;margin:72px auto 0}
     .info-video iframe{display:block;width:100%;height:100%;border:0}
     .info-credits{margin:40px 0 0;font-size:19px;line-height:1.14}.info-credits p{margin:0}.info-credits p+p{margin-top:24px}
