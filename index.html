@@ -17,6 +17,7 @@
     .groups{width:min(100%,900px);margin:auto}
     .icon-group{position:relative;height:45svh;overflow:hidden;isolation:isolate}
     .icon-group+.icon-group{margin-top:0}
+    .scroll-top{display:flex;width:90vw;margin:0 auto 100px;cursor:pointer}.scroll-top img{display:block;width:100%;height:auto}.scroll-top img~img{display:none}
     .connections{position:absolute;inset:0;width:100%;height:100%;z-index:0;overflow:visible;pointer-events:none}
     .connections polyline{fill:none;stroke:var(--blue);stroke-width:1.2;stroke-dasharray:4 6;opacity:.7}
     .icon-item{position:absolute;left:0;top:0;z-index:1;will-change:transform;pointer-events:none}
@@ -32,14 +33,14 @@
     .popup-title{display:block;width:100%;border-top:1px solid rgba(0,0,0,.65);padding-top:3px;font-size:15px}
     .popup-image{display:block;width:100%;height:154px;padding:18px 30px;object-fit:contain;filter:brightness(0) drop-shadow(0 8px 12px #77a0d8aa)}
     .meta{margin:0}.meta-row{display:grid;grid-template-columns:60px 1fr;align-items:start;min-height:29px;border-top:1px solid #0007;padding:6px 0 2px}.meta dt{font-size:10px}.meta dd{margin:0;font-size:16px}.meta a{text-decoration:none;display:block}.meta-row:last-child dt{display:none}.meta-row:last-child dd{grid-column:1/-1}
-    .popup-controls{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;border-top:1px solid #0007;padding:14px 0 12px}
+    .popup-controls{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;border-top:1px solid #0007;margin-inline:-6px;padding:14px 0 4px}
     .control{height:23px;cursor:pointer}.control img{height:21px;display:block}.control.prev img{margin-right:auto}.control.close img{margin:auto}.control.next img{margin-left:auto;transform:rotate(180deg)}
     #info-page{padding:72px 12px 210px}.info-wrap{width:100%;margin:auto}.info-copy{font-size:19px;line-height:1.14;margin:0;max-width:650px}
     .info-video{width:min(65vw,260px);aspect-ratio:9/16;margin:72px auto 0}
     .info-video iframe{display:block;width:100%;height:100%;border:0}
     .info-credits{margin:40px 0 0;font-size:19px;line-height:1.14}.info-credits p{margin:0}.info-credits p+p{margin-top:24px}
     @media (min-width:700px){
-      body{font-size:18px}.groups{width:90vw}.icon-group{height:680px;max-height:none}.number{width:40px;height:40px;font-size:14px}
+      body{font-size:18px}.groups{width:90vw}.icon-group{height:680px;max-height:none}.number{width:40px;height:40px;font-size:14px}.scroll-top{width:96vw;justify-content:space-between}.scroll-top img,.scroll-top img~img{display:block;width:31vw}
       .popup{left:50%;right:auto;width:min(620px,calc(100vw - 40px));transform:translateX(-50%);bottom:78px;max-height:70svh;padding:12px 14px}.popup-image{height:250px}.meta-row{grid-template-columns:90px 1fr}.meta dt{font-size:12px}.meta dd{font-size:18px}
       #info-page{padding:22px 0 120px}.info-wrap{width:75vw;margin:0 0 0 25vw}.info-copy{font-size:19px;line-height:1.08;max-width:1010px}
       .info-video{width:clamp(250px,16.7vw,310px);margin:54px 0 0}.info-credits{margin-top:72px;font-size:19px;line-height:1.08}
@@ -50,7 +51,7 @@
 </head>
 <body>
   <main>
-    <section id="memory-page" class="page active" aria-label="Collective Memory icons"><div id="groups" class="groups"></div></section>
+    <section id="memory-page" class="page active" aria-label="Collective Memory icons"><div id="groups" class="groups"></div><button id="scroll-top" class="scroll-top" aria-label="Scroll to the top"><img src="assets/Arrow-Up-2.svg" alt=""><img src="assets/Arrow-Up-2.svg" alt=""><img src="assets/Arrow-Up-2.svg" alt=""></button></section>
     <section id="info-page" class="page" aria-label="Information">
       <div class="info-wrap">
         <p class="info-copy">COLLECTIVE MEMORY explores the role of influence, appropriation, and transformation in graphic design through typographic fragments extracted from existing visual material, making visible the references and inspirations embedded within every work. Through copying, isolating, and recombining these fragments, information is transformed and reinterpreted. Rather than presenting design as an autonomous creation, every work is understood as part of an ongoing process that remains connected to what came before and open to what follows. The project itself becomes a visible network of references, traces, and shared cultural memory, symbolizing the interconnected processes through which design is continuously shaped and reshaped.</p>
@@ -467,7 +468,7 @@
       '3.1': {
         image:'material/pm_3.1_creation.svg',
         title:'Creation is slow',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Byung-Chul Han, Shanzhai',
         project:'Talk with Urban Landscape',
         designer:'Jahn Koutrios',
         year:'2021',
@@ -477,7 +478,7 @@
       '3.2': {
         image:'material/pm_3.2_is.svg',
         title:'Creation is slow',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Byung-Chul Han, Shanzhai',
         project:'BARS ARE CLOSED, BUT PUB IS OPEN!',
         designer:'Alix Stria',
         year:'2021',
@@ -487,7 +488,7 @@
       '3.3': {
         image:'material/pm_3.3_slow.svg',
         title:'Creation is slow',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Byung-Chul Han, Shanzhai',
         project:'Geburt erfolgreich',
         designer:'Adele Stroh',
         year:'2021',
@@ -497,7 +498,7 @@
       '4.1': {
         image:'material/pm_4.1_variation.svg',
         title:'Variation creates meaning',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Byung-Chul Han, Shanzhai',
         project:'Bauhaus-Archiv',
         designer:'Sascha Lobe, Marvin Boiko',
         year:'2014',
@@ -507,7 +508,7 @@
       '4.2': {
         image:'material/pm_4.2_creates.svg',
         title:'Variation creates meaning',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Byung-Chul Han, Shanzhai',
         project:'SPOILER Aktionsraum',
         designer:'SMILEINITIALPLUS',
         year:'2022',
@@ -517,7 +518,7 @@
       '4.3': {
         image:'material/pm_4.3_Meaning.svg',
         title:'Variation creates meaning',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Byung-Chul Han, Shanzhai',
         project:'Mystic Mountain Monsters',
         designer:'Justin Scharer',
         year:'2024',
@@ -527,7 +528,7 @@
       '5.1': {
         image:'material/pm_5.1_a.svg',
         title:'A reference is an echo',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
         project:'Campus München',
         designer:'Meisner Florian, Sophia Rhein',
         year:'2025',
@@ -537,7 +538,7 @@
       '5.2': {
         image:'material/pm_5.2_reference.svg',
         title:'A reference is an echo',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
         project:'Weekend en fanfare',
         designer:'Atelier BLVDR',
         year:'2025',
@@ -547,7 +548,7 @@
       '5.3': {
         image:'material/pm_5.3_is.svg',
         title:'A reference is an echo',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
         project:'Robert Johnson Merch',
         designer:'Selina Bernet',
         year:'2023',
@@ -557,7 +558,7 @@
       '5.4': {
         image:'material/pm_5.4_an.svg',
         title:'A reference is an echo',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
         project:'Mein Garten',
         designer:'Büro 146',
         year:'2024',
@@ -567,7 +568,7 @@
       '5.5': {
         image:'material/pm_5.5_echo.svg',
         title:'A reference is an echo',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
         project:'thoughtsareliquid',
         designer:'Studio Terhedebrügge',
         year:'2024',
@@ -577,7 +578,7 @@
       '6.1': {
         image:'material/pm_6.1_source.svg',
         title:'Source unknown',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Byung-Chul Han, Shanzhai',
         project:'Reka typeface poster',
         designer:'Spaciofino',
         year:'2023',
@@ -587,7 +588,7 @@
       '6.2': {
         image:'material/pm_6.2_unknown.svg',
         title:'Source unknown',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Byung-Chul Han, Shanzhai',
         project:'Klinkers',
         designer:'Maura Verkleij',
         year:'2025',
@@ -597,7 +598,7 @@
       '7.1': {
         image:'material/pm_7.1_every.svg',
         title:'Every design has a lineage of references',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf.Kris Sowersby, 10,000 Original Copies',
         project:'Palace St.Gallen, April + Mai 2024',
         designer:'Studio Anna Haas',
         year:'2024',
@@ -607,7 +608,7 @@
       '7.2': {
         image:'material/pm_7.2_design.svg',
         title:'Every design has a lineage of references',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf.Kris Sowersby, 10,000 Original Copies',
         project:'Mystic Mountain Monsters',
         designer:'Justin Scharer',
         year:'2024',
@@ -617,7 +618,7 @@
       '7.3': {
         image:'material/pm_7.3_has.svg',
         title:'Every design has a lineage of references',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf.Kris Sowersby, 10,000 Original Copies',
         project:'A Short Story for Flowers',
         designer:'Arjun Gilgen, Stefan Hürlemann',
         year:'2022',
@@ -627,7 +628,7 @@
       '7.4': {
         image:'material/pm_7.4_a.svg',
         title:'Every design has a lineage of references',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf.Kris Sowersby, 10,000 Original Copies',
         project:'Flaam Festival',
         designer:'Andrej & Andrej',
         year:'2024',
@@ -637,7 +638,7 @@
       '7.5': {
         image:'material/pm_7.5_lineage.svg',
         title:'Every design has a lineage of references',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf.Kris Sowersby, 10,000 Original Copies',
         project:'Talk with Urban Landscape',
         designer:'Jahn Koutrios',
         year:'2021',
@@ -647,7 +648,7 @@
       '7.6': {
         image:'material/pm_7.6_of.svg',
         title:'Every design has a lineage of references',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf.Kris Sowersby, 10,000 Original Copies',
         project:'NOF',
         designer:'Neo Neo',
         year:'2021',
@@ -657,7 +658,7 @@
       '7.7': {
         image:'material/pm_7.7_references.svg',
         title:'Every design has a lineage of references',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf.Kris Sowersby, 10,000 Original Copies',
         project:'Atelier Blam Lemunier Meyer',
         designer:'Severin Geißler',
         year:'2019',
@@ -677,7 +678,7 @@
       '8.2': {
         image:'material/pm_8.2_overlaps.svg',
         title:'Memory overlaps itself',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
         project:'Paper Clip Character Set',
         designer:'Oliver Brooks',
         year:'2022',
@@ -687,7 +688,7 @@
       '8.3': {
         image:'material/pm_8.3_itself.svg',
         title:'Memory overlaps itself',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
         project:'Geburt erfolgreich',
         designer:'Adele Stroh',
         year:'2021',
@@ -697,7 +698,7 @@
       '9.1': {
         image:'material/pm_9.1_borrowed.svg',
         title:'Borrowed fragments',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
         project:'ABC STEFAN book',
         designer:'ABC Dinamo, Stefan Marx, Simon Merz',
         year:'2025',
@@ -707,7 +708,7 @@
       '9.2': {
         image:'material/pm_9.2_fragments.svg',
         title:'Borrowed fragments',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
         project:'Brasotope Poster',
         designer:'estudiodao',
         year:'2016',
@@ -717,7 +718,7 @@
       '10.1': {
         image:'material/pm_10.1_the.svg',
         title:'The original is a trace',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Byung-Chul Han, Shanzhai',
         project:'Tacmitac Specimen',
         designer:'Benoît Bodhuin',
         year:'2022',
@@ -727,31 +728,27 @@
       '10.2': {
         image:'material/pm_10.2_original.svg',
         title:'The original is a trace',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Symposium: »Editorial Design Now«',
+        designer:'Reinicke Christoph',
+        year:'2020',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
-
-        // Here is a Problem
+        link:'https://100-beste-plakate.de/plakate/symposium-editorial-design-now/'
       },
       '10.3': {
         image:'material/pm_10.3_is.svg',
         title:'The original is a trace',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
-
-        // Here is a Problem
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Talk with Urban Landscape',
+        designer:'Jahn Koutrios',
+        year:'2021',
+        country:'Switzerland',
+        link:'https://100-beste-plakate.de/plakate/talk-with-urban-landscape/'
       },
       '10.4': {
         image:'material/pm_10.4_a.svg',
         title:'The original is a trace',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Byung-Chul Han, Shanzhai',
         project:'Bars are closed!',
         designer:'Alix Stria',
         year:'2021',
@@ -761,7 +758,7 @@
       '10.5': {
         image:'material/pm_10.5_trace-F-1.svg',
         title:'The original is a trace',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Byung-Chul Han, Shanzhai',
         project:'The Mental Traveller',
         designer:'Keller Dominik, Benedikt Luft',
         year:'2021',
@@ -771,7 +768,7 @@
       '11.1': {
         image:'material/pm_11.1_repetition.svg',
         title:'Repetition emerges through difference',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Byung-Chul Han, Shanzhai',
         project:'Lord Pusswhip Allenheimer',
         designer:'Or Type',
         year:'2018',
@@ -781,7 +778,7 @@
       '11.2': {
         image:'material/pm_11.2_emerges.svg',
         title:'Repetition emerges through difference',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Byung-Chul Han, Shanzhai',
         project:'Endless Illusion Records',
         designer:'Jan Horčík',
         year:'2021',
@@ -791,7 +788,7 @@
       '11.3': {
         image:'material/pm_11.3_through.svg',
         title:'Repetition emerges through difference',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Byung-Chul Han, Shanzhai',
         project:'Schmuckwoche Kunstpavillon München',
         designer:'Molly Rose Dyson',
         year:'2022',
@@ -801,7 +798,7 @@
       '11.4': {
         image:'material/pm_11.4_difference.svg',
         title:'Repetition emerges through difference',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Byung-Chul Han, Shanzhai',
         project:'Companions to the afterlife',
         designer:'Ioana Petcu ',
         year:'2025',
@@ -811,7 +808,7 @@
       '12.1': {
         image:'material/pm_12.1_collective.svg',
         title:'Collective reconstruction',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Byung-Chul Han, Shanzhai',
         project:'Collectomania',
         designer:'Brechbühl Erich',
         year:'2022',
@@ -821,7 +818,7 @@
       '12.2': {
         image:'material/pm_12.2_reconstruction.svg',
         title:'Collective reconstruction',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Byung-Chul Han, Shanzhai',
         project:'Schmuckwoche Kunstpavillon München',
         designer:'Molly Rose Dyson',
         year:'2022',
@@ -831,7 +828,7 @@
       '13.1': {
         image:'material/pm_13.1_design.svg',
         title:'Design is collective memory',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf.Kris Sowersby, 10,000 Original Copies',
         project:'Einladungskarte Diplomausstellung',
         designer:'Elisabeth Thoma',
         year:'2024',
@@ -841,7 +838,7 @@
       '13.2': {
         image:'material/pm_13.2_is.svg',
         title:'Design is collective memory',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf.Kris Sowersby, 10,000 Original Copies',
         project:'Graphiste Guide',
         designer:'Jules Guillemot',
         year:'2025',
@@ -851,7 +848,7 @@
       '13.3': {
         image:'material/pm_13.3_collective.svg',
         title:'Design is collective memory',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf.Kris Sowersby, 10,000 Original Copies',
         project:'Currents Festival',
         designer:'Badesaison',
         year:'2024',
@@ -861,7 +858,7 @@
       '13.4': {
         image:'material/pm_13.4_memory.svg',
         title:'Design is collective memory',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf.Kris Sowersby, 10,000 Original Copies',
         project:'Igloogho',
         designer:'Andrej & Andrej',
         year:'2020',
@@ -871,7 +868,7 @@
       '14.1': {
         image:'material/pm_14.1_every.svg',
         title:'Every work belongs to another work',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
         project:'Ellery Eskelin',
         designer:'Troxler Niklaus',
         year:'2019',
@@ -881,7 +878,7 @@
       '14.2': {
         image:'material/pm_14.2_work.svg',
         title:'Every work belongs to another work',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
         project:'Belluard Bollwerk 2020',
         designer:'AMI',
         year:'2020',
@@ -891,7 +888,7 @@
       '14.3': {
         image:'material/pm_14.3_belongs.svg',
         title:'Every work belongs to another work',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
         project:'detour',
         designer:'hesign',
         year:'2008',
@@ -901,7 +898,7 @@
       '14.4': {
         image:'material/pm_14.4_to.svg',
         title:'Every work belongs to another work',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
         project:'Lesung Sascha Macht',
         designer:'Bureau David Voss',
         year:'2016',
@@ -911,7 +908,7 @@
       '14.5': {
         image:'material/pm_14.5_another.svg',
         title:'Every work belongs to another work',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
         project:'Dancing Pigeons Kampnagel',
         designer:'Zwölf',
         year:'2010',
@@ -921,7 +918,7 @@
       '14.6': {
         image:'material/pm_14.6_work.svg',
         title:'Every work belongs to another work',
-        quote:'cf. Austin Kleon, Steal like an artist',
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
         project:'Publishing as Method',
         designer:'Sulki and Min',
         year:'2020',
@@ -932,238 +929,238 @@
         image:'material/pm_15.1_every.svg',
         title:'Every masterpiece has a master',
         quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        project:'Campus München',
+        designer:'Meisner Florian, Sophia Rhein',
+        year:'2025',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://meisnerfloriangestaltung.com/project-mfg-cmt.html'
       },
       '15.2': {
         image:'material/pm_15.2_masterpiece.svg',
         title:'Every masterpiece has a master',
         quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
+        project:'TramTram',
+        designer:'Meisner Florian Gestaltung',
         year:'2022',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://meisnerfloriangestaltung.com/project-mfg-tramtram.html'
       },
       '15.3': {
         image:'material/pm_15.3_has.svg',
         title:'Every masterpiece has a master',
         quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        project:'Another Moment',
+        designer:'Rok Ifko Krajnc',
+        year:'2024',
+        country:'Slovenia',
+        link:'https://anothergraphic.org/rok-ifko-krajnc/'
       },
       '15.4': {
         image:'material/pm_15.4_a.svg',
         title:'Every masterpiece has a master',
         quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        project:'MAM Mês da Arquitetura da Maia',
+        designer:'And Atelier',
+        year:'2019',
+        country:'Portugal',
+        link:'https://anothergraphic.org/and-atelier-4/'
       },
       '15.5': {
         image:'material/pm_15.5_master.svg',
         title:'Every masterpiece has a master',
         quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        project:'Campus München',
+        designer:'Meisner Florian, Sophia Rhein',
+        year:'2025',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://meisnerfloriangestaltung.com/project-mfg-cmt.html'
       },
       '16.1': {
         image:'material/pm_16.1_circulation.svg',
         title:'Circulation changes meaning',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Karolina Jurikova',
+        designer:'Ondrej Bachor',
+        year:'2016',
+        country:'Czech Republic',
+        link:'https://anothergraphic.org/ondrej-bachor/'
       },
       '16.2': {
         image:'material/pm_16.2_changes.svg',
         title:'Circulation changes meaning',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Einladungskarte Diplomausstellung',
+        designer:'Elisabeth Thoma',
+        year:'2024',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://anothergraphic.org/elisabeth-thoma/'
       },
       '16.3': {
         image:'material/pm_16.3_meaning.svg',
         title:'Circulation changes meaning',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Climate Knowledges',
+        designer:'Alex Walker',
+        year:'2020',
+        country:'Netherlands',
+        link:'https://anothergraphic.org/alex-walker/'
       },
       '17.1': {
         image:'material/pm_17.1_every.svg',
         title:'Every work builds upon another',
         quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        project:'Atelier Blam Lemunier Meyer',
+        designer:'Severin Geißler',
+        year:'2019',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://100-beste-plakate.de/plakate/atelier-blam-lemunier-meyer/'
       },
       '17.2': {
         image:'material/pm_17.2_work.svg',
         title:'Every work builds upon another',
         quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        project:'Typographic Summer Program',
+        designer:'babyinktwice',
+        year:'2018',
+        country:'Switzerland',
+        link:'https://100-beste-plakate.de/plakate/typographic-summer-program/'
       },
       '17.3': {
         image:'material/pm_17.3_builds.svg',
         title:'Every work builds upon another',
         quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        project:'Bauhaus-Archiv',
+        designer:'Sascha Lobe, Marvin Boiko',
+        year:'2014',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://100-beste-plakate.de/plakate/bauhaus-archiv/'
       },
       '17.4': {
         image:'material/pm_17.4_upon.svg',
         title:'Every work builds upon another',
         quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        project:'Currents Festival',
+        designer:'Badesaison',
+        year:'2024',
+        country:'Switzerland',
+        link:'https://100-beste-plakate.de/plakate/currents-festival-for-contemporary-music/'
       },
       '17.5': {
         image:'material/pm_17.5_another.svg',
         title:'Every work builds upon another',
         quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        project:'Staatstheater Mainz - Otello',
+        designer:'Neue Gestaltung',
+        year:'2024',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://100-beste-plakate.de/plakate/staatstheater-mainz-otello/'
       },
       '18.1': {
         image:'material/pm_18.1_we.svg',
         title:'We encounter classics through reproductions',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        quote:'cf.Kris Sowersby, 10,000 Original Copies',
+        project:'Reka typeface poster',
+        designer:'Spaciofino',
+        year:'2023',
+        country:'France',
+        link:'https://anothergraphic.org/spaciofino/'
       },
       '18.2': {
         image:'material/pm_18.2_encounter.svg',
         title:'We encounter classics through reproductions',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        quote:'cf.Kris Sowersby, 10,000 Original Copies',
+        project:'Spector Books',
+        designer:'Marstaller Lukas',
+        year:'2023',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://100-beste-plakate.de/plakate/spector-books/'
       },
       '18.3': {
         image:'material/pm_18.3_classics.svg',
         title:'We encounter classics through reproductions',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        quote:'cf.Kris Sowersby, 10,000 Original Copies',
+        project:'Robert Johnson Merch',
+        designer:'Selina Bernet',
+        year:'2023',
+        country:'Switzerland',
+        link:'https://anothergraphic.org/selina-bernet/'
       },
       '18.4': {
         image:'material/pm_18.4_through.svg',
         title:'We encounter classics through reproductions',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        quote:'cf.Kris Sowersby, 10,000 Original Copies',
+        project:'Atlantic Specimen',
+        designer:'Emelie Gannert',
+        year:'2024',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://emeliegannert.de'
       },
       '18.5': {
         image:'material/pm_18.5_reproductions.svg',
         title:'We encounter classics through reproductions',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        quote:'cf.Kris Sowersby, 10,000 Original Copies',
+        project:'Companions to the afterlife',
+        designer:'Ioana Petcu ',
+        year:'2025',
+        country:'Romania',
+        link:'https://anothergraphic.org/ioana-petcu/'
       },
       '19.1': {
         image:'material/pm_19.1_artists.svg',
         title:'Artists are collectors',
         quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        project:'Brasotope Poster',
+        designer:'estudiodao',
+        year:'2016',
+        country:'Brazil',
+        link:'https://anothergraphic.org/dao/'
       },
       '19.2': {
         image:'material/pm_19.2_are.svg',
         title:'Artists are collectors',
         quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        project:'Graphiste Guide',
+        designer:'Jules Guillemot',
+        year:'2025',
+        country:'France',
+        link:'https://anothergraphic.org/jules-guillemot/#google_vignette'
       },
       '19.3': {
         image:'material/pm_19.3_collectors.svg',
         title:'Artists are collectors',
         quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        project:'Klinkers',
+        designer:'Maura Verkleij',
+        year:'2025',
+        country:'Netherlands',
+        link:'https://anothergraphic.org/maura-verkleij/'
       },
       '20.1': {
         image:'material/pm_20.1_overwritten.svg',
         title:'Overwritten through others',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
+        project:'Berlin Summer University of Arts 2025',
+        designer:'Gerrit Ludwig',
+        year:'2021',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://100-beste-plakate.de/plakate/berlin-summer-university-of-arts-2025/'
       },
       '20.2': {
         image:'material/pm_20.2_through.svg',
         title:'Overwritten through others',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
+        project:'Little Long HAL GAP Specimen',
+        designer:'HAL Typefaces',
+        year:'2025',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://hanli.eu/hal-gap-specimen/'
       },
       '20.3': {
         image:'material/pm_20.3_others.svg',
         title:'Overwritten through others',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
+        project:'BSB Stabitype',
+        designer:'Meisner Florian Gestaltung',
         year:'2022',
         country:'Germany',
         link:'https://meisnerfloriangestaltung.com'
@@ -1172,251 +1169,251 @@
         image:'material/pm_21.1_nothing.svg',
         title:'Nothing emerges from nowhere',
         quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        project:'Tokyto Specimen',
+        designer:'Benoît Bodhuin',
+        year:'2023',
+        country:'France',
+        link:'https://quintalatelier.com/products/tokyto-a3'
       },
       '21.2': {
         image:'material/pm_21.2_emerges.svg',
         title:'Nothing emerges from nowhere',
         quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        project:'Atelier Blam Lemunier Meyer',
+        designer:'Severin Geißler',
+        year:'2019',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://100-beste-plakate.de/plakate/atelier-blam-lemunier-meyer/'
       },
       '21.3': {
         image:'material/pm_21.3_from.svg',
         title:'Nothing emerges from nowhere',
         quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        project:'Currents Festival',
+        designer:'Badesaison',
+        year:'2024',
+        country:'Switzerland',
+        link:'https://100-beste-plakate.de/plakate/currents-festival-for-contemporary-music/'
       },
       '21.4': {
         image:'material/pm_21.4_nowhere.svg',
         title:'Nothing emerges from nowhere',
         quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        project:'Resum Specimen',
+        designer:'Benoît Bodhuin',
+        year:'2025',
+        country:'France',
+        link:'https://bb-bureau.fr'
       },
       '22.1': {
         image:'material/pm_22.1_comments.svg',
         title:'Comments become part of the work',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Growing up Gropius',
+        designer:'Studio HanLi',
+        year:'2020',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://hanli.eu/growing-up-gropius/'
       },
       '22.2': {
         image:'material/pm_22.2_become.svg',
         title:'Comments become part of the work',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Berlin Summer University of Arts 2025',
+        designer:'Gerrit Ludwig',
+        year:'2021',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://100-beste-plakate.de/plakate/berlin-summer-university-of-arts-2025/'
       },
       '22.3': {
         image:'material/pm_22.3_part.svg',
         title:'Comments become part of the work',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Harber Specimen',
+        designer:'Benoît Bodhuin',
+        year:'2024',
+        country:'France',
+        link:'https://bb-bureau.fr'
       },
       '22.4': {
         image:'material/pm_22.4_of.svg',
         title:'Comments become part of the work',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Orlandi Mono',
+        designer:'Meisner Florian Gestatlung',
+        year:'2025',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://meisnerfloriangestaltung.com/project-mfg-orlandimono.html'
       },
       '22.5': {
         image:'material/pm_22.5_the.svg',
         title:'Comments become part of the work',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'MAD Reopening',
+        designer:'bungalow kreativbüro',
+        year:'2021',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://100-beste-plakate.de/plakate/mad-reopening/'
       },
       '22.6': {
         image:'material/pm_22.6_work.svg',
         title:'Comments become part of the work',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Work in Progress',
+        designer:'K. Raffael, M. Bohle, H. Siedler',
+        year:'2015',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://100-beste-plakate.de/plakate/work-in-progress/'
       },
       '23.1': {
         image:'material/pm_23.1_copying.svg',
         title:'Copying can be recognition',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Pictorial Composites',
+        designer:'Nicolas Bernklau, Nina Flaitz',
+        year:'2024',
+        country:'Switzerland',
+        link:'https://100-beste-plakate.de/plakate/pictorial-composites-blurring-boundaries-ambiguous-realities/'
       },
       '23.2': {
         image:'material/pm_23.2_can.svg',
         title:'Copying can be recognition',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Collectomania',
+        designer:'Brechbühl Erich',
         year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        country:'Switzerland',
+        link:'https://100-beste-plakate.de/plakate/collectomania/'
       },
       '23.3': {
         image:'material/pm_23.3_be.svg',
         title:'Copying can be recognition',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Bitte berühren!',
+        designer:'Ralph Schraivogel',
+        year:'2015',
+        country:'Switzerland',
+        link:'https://100-beste-plakate.de/plakate/bitte-beruehren/'
       },
       '23.4': {
         image:'material/pm_23.4_recognition.svg',
         title:'Copying can be recognition',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Typographic Summer Program',
+        designer:'babyinktwice',
+        year:'2018',
+        country:'Switzerland',
+        link:'https://100-beste-plakate.de/plakate/typographic-summer-program/'
       },
       '24.1': {
         image:'material/pm_24.1_analysis.svg',
         title:'Analysis can be copying',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
+        project:'Igloogho',
+        designer:'Andrej & Andrej',
+        year:'2020',
+        country:'Slovakia',
+        link:'https://anothergraphic.org/andrej-andrej-2/'
       },
       '24.2': {
         image:'material/pm_24.2_can.svg',
         title:'Analysis can be copying',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
+        project:'Felfel',
+        designer:'Brest Brest Brest',
+        year:'2023',
+        country:'France',
+        link:'https://anothergraphic.org/brest-brest-brest/'
       },
       '24.3': {
         image:'material/pm_24.3_be.svg',
         title:'Analysis can be copying',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
+        project:'Baste A & B specimen',
+        designer:'Image Format',
+        year:'2024',
+        country:'France',
+        link:'https://anothergraphic.org/image-format/'
       },
       '24.4': {
         image:'material/pm_24.4_copying.svg',
         title:'Analysis can be copying',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        quote:'cf. Marjorie Perloff, Unoriginal Genius',
+        project:'Igloogho',
+        designer:'Andrej & Andrej',
+        year:'2020',
+        country:'Slovakia',
+        link:'https://anothergraphic.org/andrej-andrej-2/'
       },
       '25.1': {
         image:'material/pm_25.1_everything.svg',
         title:'Everything is in a chain of transformation',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Klinkers',
+        designer:'Maura Verkleij',
+        year:'2025',
+        country:'Netherlands',
+        link:'https://anothergraphic.org/maura-verkleij/'
       },
       '25.2': {
         image:'material/pm_25.2_is.svg',
         title:'Everything is in a chain of transformation',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Versatile Volumes',
+        designer:'Team Thursday',
+        year:'2021',
+        country:'Netherlands',
+        link:'https://anothergraphic.org/team-thursday-2/'
       },
       '25.3': {
         image:'material/pm_25.3_in.svg',
         title:'Everything is in a chain of transformation',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Der Sommer in Stuttgart',
+        designer:'Tobias Hönow',
+        year:'2019',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://anothergraphic.org/tobias-honow-2/'
       },
       '25.4': {
         image:'material/pm_25.4_a.svg',
         title:'Everything is in a chain of transformation',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Beyond Bézier',
+        designer:'Nicolas Bernklau',
+        year:'2025',
+        country:'Switzerland',
+        link:'https://beyondbezier.ch'
       },
       '25.5': {
         image:'material/pm_25.5_chain.svg',
         title:'Everything is in a chain of transformation',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Brach und Wild',
+        designer:'Lucas Hesse, Julia Löffler',
+        year:'2021',
         country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        link:'https://100-beste-plakate.de/plakate/brach-und-wild/'
       },
       '25.6': {
         image:'material/pm_25.6_of.svg',
         title:'Everything is in a chain of transformation',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Festival de Literatura',
+        designer:'John Philip Sage',
+        year:'2020',
+        country:'United Kingdom',
+        link:'https://anothergraphic.org/john-philip-sage/'
       },
       '25.7': {
         image:'material/pm_25.7_transformation.svg',
         title:'Everything is in a chain of transformation',
-        quote:'cf. Austin Kleon, Steal like an artist',
-        project:'churchofautobahn',
-        designer:'Molly Rose Dyson',
-        year:'2022',
-        country:'Germany',
-        link:'https://meisnerfloriangestaltung.com'
+        quote:'cf. Byung-Chul Han, Shanzhai',
+        project:'Flaam Festival',
+        designer:'Andrej & Andrej',
+        year:'2024',
+        country:'Slovakai',
+        link:'https://anothergraphic.org/andrej-andrej-4/'
       }
     };
     const groupsEl=document.querySelector('#groups');
@@ -1440,6 +1437,7 @@
     document.querySelector('.popup .prev').onclick=()=>movePopup(-1);document.querySelector('.popup .next').onclick=()=>movePopup(1);document.querySelector('.popup .close').onclick=closePopup;document.querySelector('.popup-backdrop').onclick=closePopup;
     addEventListener('keydown',e=>{if(!current||!layer.classList.contains('open'))return;if(e.key==='Escape')closePopup();if(e.key==='ArrowLeft')movePopup(-1);if(e.key==='ArrowRight')movePopup(1)});
     const pageScrollPositions={'memory-page':0,'info-page':0};
+    document.querySelector('#scroll-top').addEventListener('click',()=>scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}));
     document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>{
       const activePage=document.querySelector('.page.active'),targetPage=btn.dataset.page;
       if(activePage.id===targetPage)return;
